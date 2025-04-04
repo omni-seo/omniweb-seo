@@ -15,7 +15,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (!url) return res.status(400).json({ error: 'URLが必要です' });
 
   try {
-    const prompt = `以下のWebサイトURLに対して、SEOの観点から改善すべき点を3つ日本語で提案してください：\nURL: ${url}`;
+    const prompt = `以下のWebサイトURLに対して、SEOの視点から改善すべき点を3つ日本語で提案してください：\nURL: ${url}`;
 
     const completion = await openai.createChatCompletion({
       model: 'gpt-4o',
