@@ -12,9 +12,13 @@ export default function AnalyzePage() {
     setLoading(true);
     setResult(null);
     try {
-      // 仮の診断処理（今後API連携予定）
-      await new Promise((res) => setTimeout(res, 1500));
-      setResult(`✅ ${url} のSEO診断が完了しました！（仮結果）`);
+      const response = await fetch('/api/analyze', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url })
+      });
+      const data = await response.json();
+      setResult(data.result || '診断結果を取得できませんでした');
     } catch (err) {
       setResult('エラーが発生しました');
     }
@@ -46,7 +50,7 @@ export default function AnalyzePage() {
       >
         {loading ? '診断中...' : '診断する'}
       </button>
-      {result && <p className="mt-6 text-green-600 font-semibold">{result}</p>}
+      {result && <p className="mt-6 text-green-600 font-semibold whitespace-pre-wrap">{result}</p>}
     </div>
   );
 }
