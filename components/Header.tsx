@@ -8,40 +8,30 @@ const Header = () => {
   const { user, logout } = useAuth();
 
   return (
-    <nav className="bg-gray-800 p-4">
+    <header className="bg-gray-900 text-white p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <div>
-          <Link href="/">
-            <span className="text-white text-lg font-bold">OmniWeb SEO</span>
-          </Link>
-        </div>
-        <div className="space-x-4">
-          <Link href="/pricing">
-            <span className="text-gray-300 hover:text-white">料金</span>
-          </Link>
-          <Link href="/analyze">
-            <span className="text-gray-300 hover:text-white">分析</span>
-          </Link>
+        <Link href="/">
+          <span className="text-xl font-bold">OmniWeb SEO</span>
+        </Link>
+        <nav className="space-x-4">
+          <Link href="/pricing">料金</Link>
+          <Link href="/analyze">分析</Link>
           {user ? (
             <>
-              <Link href="/dashboard">
-                <span className="text-gray-300 hover:text-white">ダッシュボード</span>
-              </Link>
+              <Link href="/dashboard">ダッシュボード</Link>
               <button
                 onClick={logout}
-                className="text-gray-300 hover:text-white"
+                className="bg-red-600 px-3 py-1 rounded hover:bg-red-700"
               >
                 ログアウト
               </button>
             </>
           ) : (
-            <Link href="/login">
-              <span className="text-gray-300 hover:text-white">ログイン</span>
-            </Link>
+            <Link href="/login">ログイン</Link>
           )}
-        </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 };
 
